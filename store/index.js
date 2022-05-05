@@ -1,5 +1,6 @@
 
 const state = () => ({
+  loading: true,
   counters: [],
   countersTotal: 0
 })
@@ -21,3 +22,4 @@ const mutations = {
 }
 
 export {state, mutations}
+
