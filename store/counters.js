@@ -1,7 +1,8 @@
 export const state = () => ({
-  countersIndex: 1,
+  countersId: 1,
   counters: [],
   countersTotal: 0,
+  counterInFocusId: null,
 });
 
 export const mutations = {
@@ -11,13 +12,42 @@ export const mutations = {
   decreaseTotal(state) {
     state.countersTotal--;
   },
-  add(state, counter) {
-    const counterWithIndex = counter.push(state.countersIndex);
-    state.counters.push(counterWithIndex);
-    state.countersIndex ++;
+  add(state, counterName) {
+    const counter = {
+      id: state.countersId,
+      name: counterName,
+      value: 0,
+    };
+    state.counters.push(counter);
+    state.countersId++;
   },
-  remove(state, { counter }) {
-    statelcountersTotal -= counter.count;
-    state.counters.splice(state.counters.indexOf(counter), 1);
+  setCounterInFocus(state, id) {
+    state.counterInFocusId = id;
+  },
+  delete(state) {
+    // state.countersTotal -= counter.count;
+    const newCounters = state.counters.filter(
+      (c) => c.id !== state.counterInFocusId
+    );
+    state.counters = newCounters;
+    state.counterInFocusId = null;
+  },
+  incrementCounterValue(state, id) {
+    const actualCounters = state.counters.map((c) => {
+      if (c.id === id) {
+        c.value++;
+      }
+      return c;
+    });
+    state.counters = actualCounters;
+  },
+  decreaseCounterValue(state, id) {
+    const actualCounters = state.counters.map((c) => {
+      if (c.id === id) {
+        c.value--;
+      }
+      return c;
+    });
+    state.counters = actualCounters;
   },
 };

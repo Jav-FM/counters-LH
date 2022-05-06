@@ -1,14 +1,19 @@
 <template >
   <div id="index">
-    <Modal v-show="modalState" />
+    <CreatingCounterModal v-show="creatingCounterModalState" />
+    <DeletingCounterModal v-show="deletingCounterModalState" />
     <NavBar />
     <CountersContainer>
-      <Counter :name="'Nombre'" :value="2" />
-      <Counter :name="'Nombre'" :value="2" />
-      <Counter :name="'Nombre'" :value="2" />
-      <Counter :name="'Nombre'" :value="2" />
-      <Counter :name="'Nombre'" :value="2" />
+      <Counter
+        v-for="(c, index) in counters"
+        :key="index"
+        :name="c.name"
+        :value="c.value"
+        :id="c.id"
+      />
+      <h4 v-show="counters.length === 0">No tienes contadores registrados.</h4>
     </CountersContainer>
+
     <Footer />
   </div>
 </template>
@@ -16,10 +21,16 @@
 <script>
 export default {
   name: "IndexPage",
-    computed: {
-    modalState () {
-      return this.$store.state.modal.showingModal
-    }
+  computed: {
+    creatingCounterModalState() {
+      return this.$store.state.modals.showingCreatingCounterModal;
+    },
+    deletingCounterModalState() {
+      return this.$store.state.modals.showingDeletingCounterModal;
+    },
+    counters() {
+      return this.$store.state.counters.counters;
+    },
   },
 };
 </script>

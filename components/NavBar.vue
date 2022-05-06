@@ -1,6 +1,6 @@
 <template>
   <div id="navbar">
-    <Button :text="'Agregar contador'" :onPress="handleShowModal" />
+    <Button :text="'Agregar contador'" :handleOnClick="handleShowModal" />
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: "NavBar",
   methods: {
     handleShowModal() {
-      this.$store.commit('modal/showModal')
+      this.$store.commit("modals/showCreatingCounterModal");
     },
   },
 };

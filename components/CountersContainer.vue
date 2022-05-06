@@ -23,6 +23,6 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-top: 60px;
-  margin-bottom: 60px;
+  margin-bottom: 180px;
 }
 </style>

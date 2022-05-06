@@ -1,5 +1,9 @@
 <template>
-  <div id="round-button-container">
+  <div
+    class="round-button-container"
+    :class="{ disabled: disabled }"
+    @click="handleOnClick"
+  >
     <span :style="iconStyle" class="material-icons">{{ icon }}</span>
   </div>
 </template>
@@ -15,6 +19,13 @@ export default {
     iconColor: {
       type: String,
       required: true,
+    },
+    handleOnClick: {
+      type: Function,
+      required: true,
+    },
+    disabled: {
+      type: Boolean,
     },
   },
   data() {
@@ -34,7 +45,7 @@ export default {
 </script>
 
 <style scoped>
-#round-button-container {
+.round-button-container {
   background-color: #ffffff;
   width: 30px;
   height: 30px;
@@ -45,7 +56,13 @@ export default {
   margin-left: 10px;
   margin-right: 10px;
 }
-#round-button-container:hover {
+.round-button-container:hover {
   cursor: pointer;
+}
+.disabled {
+  background-color: #b1afb4;
+}
+.disabled:hover {
+  cursor: not-allowed;
 }
 </style>

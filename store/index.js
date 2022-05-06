@@ -1,8 +1,8 @@
-const state = () => ({
+export const state = () => ({
   loading: true,
 });
 
-const mutations = {
+export const mutations = {
   finishLoading(state) {
     state.loading = false;
   },
@@ -10,5 +10,3 @@ const mutations = {
     state.loading = true;
   },
 };
-
-export { state, mutations };

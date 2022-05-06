@@ -3,11 +3,23 @@
   <div id="counter">
     <h3>{{ name }}</h3>
     <div id="counter-right-side">
-      <RoundButton :iconColor="'#af0a2e'" :icon="'remove'" />
+      <RoundButton
+        :iconColor="'#af0a2e'"
+        :icon="'remove'"
+        :disabled="minLimitReached"
+        :handleOnClick="handleDecreaseValue"
+      />
 
       <h4>{{ value }}</h4>
-      <RoundButton :iconColor="'#1db118'" :icon="'add'" />
-      <span id="delete-icon" class="material-icons">delete</span>
+      <RoundButton
+        :iconColor="'#1db118'"
+        :icon="'add'"
+        :disabled="maxLimitReached"
+        :handleOnClick="handleIngrementValue"
+      />
+      <span id="delete-icon" class="material-icons" @click="handleShowModal"
+        >delete</span
+      >
     </div>
   </div>
 </template>
@@ -15,6 +27,12 @@
 <script>
 export default {
   name: "Counter",
+  data() {
+    return {
+      minLimitReached: false,
+      maxLimitReached: false,
+    };
+  },
   props: {
     name: {
       type: String,
@@ -24,6 +42,44 @@ export default {
       type: Number,
       required: true,
     },
+    id: {
+      type: Number,
+      required: true,
+    },
+  },
+  methods: {
+    handleShowModal() {
+      this.$store.commit("counters/setCounterInFocus", this.id);
+      this.$store.commit("modals/showDeletingCounterModal");
+    },
+    handleIngrementValue() {
+      if (!this.maxLimitReached) {
+        this.$store.commit("counters/incrementCounterValue", this.id);
+      }
+    },
+    handleDecreaseValue() {
+      if (!this.minLimitReached) {
+        this.$store.commit("counters/decreaseCounterValue", this.id);
+      }
+    },
+    sheckValue(v) {
+      if (v === 0) {
+        this.minLimitReached = true;
+      } else if (v === 20) {
+        this.maxLimitReached = true;
+      } else {
+        this.minLimitReached = false;
+        this.maxLimitReached = false;
+      }
+    },
+  },
+  watch: {
+    value: function (val) {
+      this.sheckValue(val);
+    },
+  },
+  created() {
+    this.sheckValue(this.value);
   },
 };
 </script>
