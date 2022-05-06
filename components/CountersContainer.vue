@@ -1,5 +1,6 @@
 <template>
   <div id="container">
+    <h2>Tus contadores</h2>
     <slot />
   </div>
 </template>
@@ -21,5 +22,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 </style>

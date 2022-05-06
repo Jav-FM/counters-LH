@@ -1,20 +1,28 @@
 <template>
-  <div id="container">
-
+  <div id="navbar">
+    <Button :text="'Agregar contador'" :onPress="handleShowModal" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "CountersContainer",
+  name: "NavBar",
+  methods: {
+    handleShowModal() {
+      this.$store.commit('modal/showModal')
+    },
+  },
 };
 </script>
 
 <style scoped>
-#container {
-  width: 100vw;
-  height: 80px;
+#navbar {
+  width: 100%;
+  height: 100px;
   background-color: #39167a;
   margin-top: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 </style>

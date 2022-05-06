@@ -3,10 +3,11 @@
   <div id="counter">
     <h3>{{ name }}</h3>
     <div id="counter-right-side">
+      <RoundButton :iconColor="'#af0a2e'" :icon="'remove'" />
+
+      <h4>{{ value }}</h4>
       <RoundButton :iconColor="'#1db118'" :icon="'add'" />
-      <p>{{ value }}</p>
-        <RoundButton :iconColor="'#af0a2e'" :icon="'remove'" />
-      <span class="material-icons">delete</span>
+      <span id="delete-icon" class="material-icons">delete</span>
     </div>
   </div>
 </template>
@@ -33,14 +34,21 @@ export default {
   background-color: #503977;
   border-radius: 5px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
   margin-top: 20px;
 }
 #counter-right-side {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+}
+#delete-icon {
+  margin-left: 15px;
+}
+#delete-icon:hover {
+  cursor: pointer;
 }
 </style>

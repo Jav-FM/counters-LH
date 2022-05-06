@@ -1,25 +1,14 @@
-
 const state = () => ({
   loading: true,
-  counters: [],
-  countersTotal: 0
-})
+});
 
 const mutations = {
-  incrementTotal(state) {
-    state.countersTotal++
+  finishLoading(state) {
+    state.loading = false;
   },
-  decreaseTotal(state) {
-    state.countersTotal--
+  activeLoading(state) {
+    state.loading = true;
   },
-  add(state, counter) {
-    state.counters.push(counter)
-  },
-  remove(state, { counter }) {
-    statelcountersTotal -= counter.count
-    state.counters.splice(state.counters.indexOf(counter), 1)
-  }
-}
+};
 
-export {state, mutations}
-
+export { state, mutations };

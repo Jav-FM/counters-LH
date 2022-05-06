@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div id="round-button-container">
     <span :style="iconStyle" class="material-icons">{{ icon }}</span>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scoped>
-#container {
+#round-button-container {
   background-color: #ffffff;
   width: 30px;
   height: 30px;
@@ -44,5 +44,8 @@ export default {
   justify-content: center;
   margin-left: 10px;
   margin-right: 10px;
+}
+#round-button-container:hover {
+  cursor: pointer;
 }
 </style>
