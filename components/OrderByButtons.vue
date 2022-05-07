@@ -6,13 +6,15 @@
       <div id="arrows-container">
         <span
           class="material-icons up-icon"
-          @click="handleSetOrder('name', 'upward')"
+          @click="!nameUpwardActive ? handleSetOrder('name', 'upward') : null"
+          :class="{ icondisabled: nameUpwardActive }"
         >
           arrow_drop_up
         </span>
         <span
           class="material-icons down-icon"
-          @click="handleSetOrder('name', 'falling')"
+          @click="!nameFallingActive ? handleSetOrder('name', 'falling') : null"
+          :class="{ icondisabled: nameFallingActive }"
         >
           arrow_drop_down
         </span>
@@ -23,13 +25,17 @@
       <div id="arrows-container">
         <span
           class="material-icons up-icon"
-          @click="handleSetOrder('value', 'upward')"
+          @click="!valueUpwardActive ? handleSetOrder('value', 'upward') : null"
+          :class="{ icondisabled: valueUpwardActive }"
         >
           arrow_drop_up
         </span>
         <span
           class="material-icons down-icon"
-          @click="handleSetOrder('value', 'falling')"
+          @click="
+            !valueFallingActive ? handleSetOrder('value', 'falling') : null
+          "
+          :class="{ icondisabled: valueFallingActive }"
         >
           arrow_drop_down
         </span>
@@ -41,18 +47,92 @@
 <script>
 export default {
   name: "OrderByButtons",
+  data() {
+    return {};
+  },
   methods: {
     handleSetOrder(field, direction) {
       this.$store.commit("countersOrder/setField", field);
       this.$store.commit("countersOrder/setDirection", direction);
-    }
-  }
+    },
+  },
+  computed: {
+    counters() {
+      return this.$store.state.counters.counters;
+    },
+    countersOrder() {
+      if (this.$store.state.countersOrder.active) {
+        return {
+          field: this.$store.state.countersOrder.field,
+          direction: this.$store.state.countersOrder.direction,
+        };
+      } else {
+        return false;
+      }
+    },
+    nameUpwardActive() {
+      if (
+        this.countersOrder?.field === "name" &&
+        this.countersOrder?.direction === "upward"
+      ) {
+        const orderedCounters = [...this.counters].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        this.$store.commit("countersOrder/setOrderedCounters", orderedCounters);
+        return true;
+      } else {
+        return false;
+      }
+    },
+    nameFallingActive() {
+      if (
+        this.countersOrder?.field === "name" &&
+        this.countersOrder?.direction === "falling"
+      ) {
+        const orderedCounters = [...this.counters].sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+        this.$store.commit("countersOrder/setOrderedCounters", orderedCounters);
+        return true;
+      } else {
+        return false;
+      }
+    },
+    valueUpwardActive() {
+      if (
+        this.countersOrder?.field === "value" &&
+        this.countersOrder?.direction === "upward"
+      ) {
+        const orderedCounters = [...this.counters].sort((a, b) =>
+          a.value > b.value ? 1 : -1
+        );
+        this.$store.commit("countersOrder/setOrderedCounters", orderedCounters);
+        return true;
+      } else {
+        return false;
+      }
+    },
+    valueFallingActive() {
+      if (
+        this.countersOrder?.field === "value" &&
+        this.countersOrder?.direction === "falling"
+      ) {
+        const orderedCounters = [...this.counters].sort((a, b) =>
+          b.value > a.value ? 1 : -1
+        );
+        this.$store.commit("countersOrder/setOrderedCounters", orderedCounters);
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
 #order-container {
-  width: 80%;
+  width: 75%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -76,5 +156,11 @@ export default {
 .up-icon:hover,
 .down-icon:hover {
   cursor: pointer;
+}
+.icondisabled {
+  color: grey;
+}
+.icondisabled:hover {
+  cursor: default;
 }
 </style>

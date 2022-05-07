@@ -17,7 +17,11 @@
         :disabled="maxLimitReached"
         :handleOnClick="handleIngrementValue"
       />
-      <span id="delete-icon" class="material-icons" @click="handleShowModal">
+      <span
+        id="delete-icon"
+        class="material-icons"
+        @click="handleShowDeletingModal"
+      >
         delete
       </span>
     </div>
@@ -48,7 +52,7 @@ export default {
     },
   },
   methods: {
-    handleShowModal() {
+    handleShowDeletingModal() {
       this.$store.commit("counters/setCounterInFocus", this.id);
       this.$store.commit("modals/showDeletingCounterModal");
     },
@@ -86,7 +90,7 @@ export default {
 
 <style scoped>
 #counter {
-  width: 90%;
+  width: 80%;
   background-color: #503977;
   border-radius: 5px;
   display: flex;

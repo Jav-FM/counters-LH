@@ -2,6 +2,7 @@
   <div id="header">
     <div id="header-side">
     <Button
+      v-show="counters.length > 0"
       :text="'Agregar contador'"
       :handleOnClick="handleShowModal"
       :disabled="disableCreateButton"

@@ -1,6 +1,6 @@
 <template>
   <div id="footer">
-    <h3>Cuenta total: {{countersTotalValue}}</h3>
+    <h3 v-show="counters.length > 0">Cuenta total: {{countersTotalValue}}</h3>
   </div>
 </template>
 
@@ -8,10 +8,14 @@
 export default {
   name: "Footer",
   computed: {
+      counters() {
+      return this.$store.state.counters.counters;
+    },
     countersTotalValue() {
       return this.$store.state.counters.countersTotalValue;
     },
   },
+
 };
 </script>
 

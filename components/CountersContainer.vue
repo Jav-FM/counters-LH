@@ -13,7 +13,7 @@ export default {
 
 <style scoped>
 #container {
-  width: 80%;
+  width: 70%;
   padding: 20px;
   padding-bottom: 40px;
   background-color: #2b262e;
@@ -22,7 +22,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
-  margin-bottom: 180px;
+  margin-top: 80px;
+  margin-bottom: 200px;
 }
 </style>

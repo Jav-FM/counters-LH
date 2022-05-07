@@ -23,10 +23,10 @@ export const mutations = {
     const newCounters = state.counters.filter(
       (c) => c.id !== state.counterInFocusId
     );
-    const valueToSubstract = state.counters.map((c) => {
-      if (c.id === state.counterInFocusId) return c.value;
-    });
-    state.countersTotalValue -= valueToSubstract[0];
+    const valueToSubstract = state.counters.find(
+      (c) => c.id === state.counterInFocusId
+    ).value;
+    state.countersTotalValue -= valueToSubstract;
     state.counters = newCounters;
     localStorage.removeItem(`counter${state.counterInFocusId}`);
     state.counterInFocusId = null;

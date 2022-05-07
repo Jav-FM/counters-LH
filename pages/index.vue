@@ -17,7 +17,6 @@
         :text="'Crea tu primer contador'"
         :handleOnClick="handleShowModal"
       />
-      <h3 v-show="counterOrder">{{ counterOrder }}</h3>
     </CountersContainer>
   </div>
 </template>
@@ -39,38 +38,10 @@ export default {
       return this.$store.state.modals.showingDeletingCounterModal;
     },
     counters() {
-      return this.$store.state.counters.counters;
-    },
-    counterOrder() {
-      if (this.$store.state.countersOrder.active) {
-        return {
-          field: this.$store.state.countersOrder.field,
-          direction: this.$store.state.countersOrder.direction,
-        };
+      if (this.$store.state.countersOrder.orderedCounters) {
+        return this.$store.state.countersOrder.orderedCounters;
       } else {
-        return false;
-      }
-    },
-    orderedCounters() {
-      if (counterOrder) {
-        if (
-          counterOrder.field === "name" &&
-          counterOrder.direction === "upward"
-        ) {
-        } else if (
-          counterOrder.field === "name" &&
-          counterOrder.direction === "falling"
-        ) {
-        } else if (
-          counterOrder.field === "value" &&
-          counterOrder.direction === "upward"
-        ) {
-        } else if (
-          counterOrder.field === "value" &&
-          counterOrder.direction === "upward"
-        ) {
-        } else {
-        }
+        return this.$store.state.counters.counters;
       }
     },
   },
