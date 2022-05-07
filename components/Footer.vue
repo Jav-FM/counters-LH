@@ -1,6 +1,7 @@
 <template>
   <div id="footer">
-    <h3 v-show="counters.length > 0">Cuenta total: {{countersTotalValue}}</h3>
+     <h3 v-show="counters.length > 0">Total de contadores: {{counters.length}}</h3>
+    <h3 v-show="counters.length > 0">Suma total de valores: {{countersTotalValue}}</h3>
   </div>
 </template>
 
@@ -24,11 +25,12 @@ export default {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 120px;
+  min-height: 120px;
   background-color: #39167a;
   z-index: 2;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 </style>

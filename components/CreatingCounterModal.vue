@@ -89,5 +89,6 @@ export default {
   height: 25px;
   border-radius: 5px;
   border: none;
+  font-size: 16px;
 }
 </style>

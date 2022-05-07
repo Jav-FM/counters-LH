@@ -11,12 +11,18 @@
         :value="c.value"
         :id="c.id"
       />
-      <h4 v-show="counters.length === 0">No tienes contadores registrados.</h4>
-      <Button
-        v-show="counters.length === 0"
-        :text="'Crea tu primer contador'"
-        :handleOnClick="handleShowModal"
-      />
+      <div v-show="counters.length === 0">
+        <h4 v-if="filtersApplied">
+          Ningun contador cumple con los criterios de filtro.
+        </h4>
+        <div v-else>
+          <h4>No tienes contadores registrados.</h4>
+          <Button
+            :text="'Crea tu primer contador'"
+            :handleOnClick="handleShowModal"
+          />
+        </div>
+      </div>
     </CountersContainer>
   </div>
 </template>
@@ -38,11 +44,16 @@ export default {
       return this.$store.state.modals.showingDeletingCounterModal;
     },
     counters() {
-      if (this.$store.state.countersOrder.orderedCounters) {
+      if (this.$store.state.countersFilters.filtersActive) {
+        return this.$store.state.countersFilters.filteredCounters;
+      } else if (this.$store.state.countersOrder.orderedCounters) {
         return this.$store.state.countersOrder.orderedCounters;
       } else {
         return this.$store.state.counters.counters;
       }
+    },
+    filtersApplied() {
+      return this.$store.state.countersFilters.filtersActive;
     },
   },
   mounted() {
