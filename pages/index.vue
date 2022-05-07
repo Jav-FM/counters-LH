@@ -1,9 +1,9 @@
 <template >
-  <div id="index">
+  <div id="index-container">
     <CreatingCounterModal v-show="creatingCounterModalState" />
     <DeletingCounterModal v-show="deletingCounterModalState" />
-    <NavBar />
     <CountersContainer>
+      <OrderByButtons v-show="counters.length !== 0" />
       <Counter
         v-for="(c, index) in counters"
         :key="index"
@@ -12,15 +12,25 @@
         :id="c.id"
       />
       <h4 v-show="counters.length === 0">No tienes contadores registrados.</h4>
+      <Button
+        v-show="counters.length === 0"
+        :text="'Crea tu primer contador'"
+        :handleOnClick="handleShowModal"
+      />
+      <h3 v-show="counterOrder">{{ counterOrder }}</h3>
     </CountersContainer>
-
-    <Footer />
   </div>
 </template>
 
 <script>
 export default {
   name: "IndexPage",
+  layout: "generalLayout",
+  methods: {
+    handleShowModal() {
+      this.$store.commit("modals/showCreatingCounterModal");
+    },
+  },
   computed: {
     creatingCounterModalState() {
       return this.$store.state.modals.showingCreatingCounterModal;
@@ -31,47 +41,47 @@ export default {
     counters() {
       return this.$store.state.counters.counters;
     },
+    counterOrder() {
+      if (this.$store.state.countersOrder.active) {
+        return {
+          field: this.$store.state.countersOrder.field,
+          direction: this.$store.state.countersOrder.direction,
+        };
+      } else {
+        return false;
+      }
+    },
+    orderedCounters() {
+      if (counterOrder) {
+        if (
+          counterOrder.field === "name" &&
+          counterOrder.direction === "upward"
+        ) {
+        } else if (
+          counterOrder.field === "name" &&
+          counterOrder.direction === "falling"
+        ) {
+        } else if (
+          counterOrder.field === "value" &&
+          counterOrder.direction === "upward"
+        ) {
+        } else if (
+          counterOrder.field === "value" &&
+          counterOrder.direction === "upward"
+        ) {
+        } else {
+        }
+      }
+    },
+  },
+  mounted() {
+    localStorage.clear();
   },
 };
 </script>
 
-<style>
-body {
-  background-color: #120b16;
-  color: #f6f5f8;
-  font-family: "Open Sans", sans-serif;
-  height: 100%;
-  width: 100vw;
-  margin: 0px;
-}
-
-h1 {
-  font-size: 40px;
-  font-weight: 700;
-  text-align: center;
-}
-
-h2 {
-  font-size: 32px;
-  font-weight: 700;
-}
-
-h3 {
-  font-size: 24px;
-  font-weight: 600;
-}
-
-h4 {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-p {
-  font-size: 14px;
-  color: #120b16;
-}
-
-#index {
+<style scoped>
+#index-container {
   height: 100%;
   display: flex;
   flex-direction: column;

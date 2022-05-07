@@ -1,12 +1,17 @@
 <template>
   <div id="footer">
-    <h4>AQUI ESTOY</h4>
+    <h3>Cuenta total: {{countersTotalValue}}</h3>
   </div>
 </template>
 
 <script>
 export default {
   name: "Footer",
+  computed: {
+    countersTotalValue() {
+      return this.$store.state.counters.countersTotalValue;
+    },
+  },
 };
 </script>
 
@@ -20,6 +25,6 @@ export default {
   z-index: 2;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 </style>

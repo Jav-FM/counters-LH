@@ -10,16 +10,16 @@
         :handleOnClick="handleDecreaseValue"
       />
 
-      <h4>{{ value }}</h4>
+      <h3>{{ value }}</h3>
       <RoundButton
         :iconColor="'#1db118'"
         :icon="'add'"
         :disabled="maxLimitReached"
         :handleOnClick="handleIngrementValue"
       />
-      <span id="delete-icon" class="material-icons" @click="handleShowModal"
-        >delete</span
-      >
+      <span id="delete-icon" class="material-icons" @click="handleShowModal">
+        delete
+      </span>
     </div>
   </div>
 </template>
@@ -102,7 +102,8 @@ export default {
   align-items: center;
 }
 #delete-icon {
-  margin-left: 15px;
+  margin-left: 18px;
+  font-size: 32px;
 }
 #delete-icon:hover {
   cursor: pointer;

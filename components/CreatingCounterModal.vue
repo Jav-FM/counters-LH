@@ -4,10 +4,8 @@
       <div id="modal-side">
         <h4>Nombre:</h4>
         <input id="modal-input" v-model="counterName" />
-        <div v-show="alertContent" id="error-alert-container">
-          <span class="material-icons">error</span>
-          <p id="error-alert-text">{{ alertContent }}</p>
-        </div>
+        <ErrorAlert v-show="alertContent">{{ alertContent }}
+        </ErrorAlert>
       </div>
       <div id="modal-side">
         <Button
@@ -27,8 +25,9 @@ export default {
   data() {
     return {
       counterName: "",
-      alertContent: "",
+      alertContent: "Debes escribir un nombre",
       createButtonDisabled: true,
+      nameValidator: /^([A-ZÑa-zñáéíóúÁÉÍÓÚ 0-9]){2,20}$/,
     };
   },
   methods: {
@@ -55,9 +54,11 @@ export default {
       value !== "" && !value.trim()
         ? (this.alertContent =
             "El nombre no puede tener sólo espacios en blanco")
-        : value !== "" && value.trim()
+        : value !== "" && value.trim() && !this.nameValidator.test(value)
+        ? (this.alertContent = "Usa sólo letras y números, entre 2 y 20 caracteres")
+        : value !== "" && value.trim() && this.nameValidator.test(value)
         ? (this.createButtonDisabled = false)
-        : null;
+        : (this.alertContent = "Debes escribir un nombre");
     },
   },
 };
@@ -88,16 +89,5 @@ export default {
   height: 25px;
   border-radius: 5px;
   border: none;
-}
-#error-alert-container {
-  color: #f6f5f8;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-left: 10px;
-}
-#error-alert-text {
-  color: #f6f5f8;
 }
 </style>
