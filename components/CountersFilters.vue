@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="filters-coontainer">
     <div id="counters-numeric-filters" v-show="filtersApplied !== true">
-      <h3>Filtro numérico:</h3>
+      <h3 id="filter-type-text">Filtro numérico:</h3>
       <Selector
         :name="'selectionCriteria'"
         v-model="criteria"
@@ -105,6 +105,8 @@ export default {
   margin-right: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 #number-input {
   height: 38px;
@@ -113,5 +115,13 @@ export default {
   border: none;
   font-size: 16px;
   padding-left: 15px;
+}
+@media (max-width: 870px) {
+  #filters-coontainer {
+    margin: auto;
+  }
+  #filter-type-text, #counters-numeric-filters {
+  margin: 0;
+}
 }
 </style>

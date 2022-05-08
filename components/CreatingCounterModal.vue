@@ -1,5 +1,12 @@
 <template>
   <ModalsContainer>
+      <span
+        id="close-icon"
+        class="material-icons"
+        @click="handleHideModal"
+      >
+        close
+      </span>
     <div id="modal">
       <div id="modal-side">
         <h4>Nombre:</h4>
@@ -90,5 +97,14 @@ export default {
   border-radius: 5px;
   border: none;
   font-size: 16px;
+}
+#close-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+}
+#close-icon:hover {
+  cursor: pointer;
 }
 </style>

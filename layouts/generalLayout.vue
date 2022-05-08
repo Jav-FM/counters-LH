@@ -24,6 +24,7 @@ h2 {
 h3 {
   font-size: 24px;
   font-weight: 600;
+  margin: 0;
 }
 
 h4 {

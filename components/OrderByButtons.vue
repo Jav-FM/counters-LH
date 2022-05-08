@@ -138,6 +138,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding-right: 4%;
+  gap: 10px;
 }
 #order-container-side {
   display: flex;
@@ -162,5 +163,10 @@ export default {
 }
 .icondisabled:hover {
   cursor: default;
+}
+@media (max-width: 870px) {
+  #order-container {
+    justify-content: space-evenly;
+  }
 }
 </style>

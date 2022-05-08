@@ -12,11 +12,11 @@
         :id="c.id"
       />
       <div v-show="counters.length === 0">
-        <h4 v-if="filtersApplied">
+        <h4 v-if="filtersApplied" id="index-text">
           Ningun contador cumple con los criterios de filtro.
         </h4>
-        <div v-else>
-          <h4>No tienes contadores registrados.</h4>
+        <div v-else id="no-counters-container">
+          <h4 id="index-text">No tienes contadores registrados.</h4>
           <Button
             :text="'Crea tu primer contador'"
             :handleOnClick="handleShowModal"
@@ -69,5 +69,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+#no-counters-container {
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+}
+#index-text {
+  text-align: center;
 }
 </style>

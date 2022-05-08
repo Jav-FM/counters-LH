@@ -1,5 +1,8 @@
 <template>
   <ModalsContainer>
+    <span id="close-icon" class="material-icons" @click="handleHideModal">
+      close
+    </span>
     <div id="modal">
       <h4 id="modal-text">
         ¿Estás seguro de que quieres eliminar este contador?
@@ -83,5 +86,14 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
+#close-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+}
+#close-icon:hover {
+  cursor: pointer;
 }
 </style>

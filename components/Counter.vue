@@ -91,6 +91,7 @@ export default {
 <style scoped>
 #counter {
   width: 80%;
+  min-height: 90px;
   background-color: #503977;
   border-radius: 5px;
   display: flex;
@@ -111,5 +112,12 @@ export default {
 }
 #delete-icon:hover {
   cursor: pointer;
+}
+@media (max-width: 870px) {
+  #counter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
 </style>

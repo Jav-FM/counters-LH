@@ -1,17 +1,17 @@
 <template>
   <div id="header">
     <div id="header-side">
-    <Button
-      v-show="counters.length > 0"
-      :text="'Agregar contador'"
-      :handleOnClick="handleShowModal"
-      :disabled="disableCreateButton"
-    />
-    <ErrorAlert v-show="disableCreateButton"
-      >Llegaste al límite de contadores
-    </ErrorAlert>
+      <Button
+        v-show="counters.length > 0"
+        :text="'Agregar contador'"
+        :handleOnClick="handleShowModal"
+        :disabled="disableCreateButton"
+      />
+      <ErrorAlert v-show="disableCreateButton"
+        >Llegaste al límite de contadores
+      </ErrorAlert>
     </div>
-    <CountersFilters v-show="counters.length > 0"/>
+    <CountersFilters v-show="counters.length > 0" />
   </div>
 </template>
 
@@ -55,11 +55,18 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   flex-wrap: wrap;
 }
 #header-side {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media (max-width: 870px) {
+  #header-side {
+    margin: auto;
+    padding-bottom: 10px;
+  }
 }
 </style>
