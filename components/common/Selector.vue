@@ -3,7 +3,7 @@
     class="selector-container"
     :class="{ disabled: disabled }"
   >
-    <select :name="name" id="selector" :value="value" @change="$emit('change', $event.target.value)">
+    <select :name="name" id="selector" @change="$emit('change', $event.target.value)">
       <option id="default-value" key="0" :value="null" selected>
         {{ placeholder }}
       </option>

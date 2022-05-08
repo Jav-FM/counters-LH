@@ -49,13 +49,16 @@ export default {
 #header {
   width: 100%;
   min-height: 100px;
-  background-color: #39167a;
+  background-image: url("../assets/img/texture.jpg");
+  background-position-y: 40%;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin-top: -10px;
   padding-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  border-bottom: 1px solid #716479;
   flex-wrap: wrap;
 }
 #header-side {

@@ -39,8 +39,8 @@
     />
     <div id="filters-section" v-show="filtersApplied">
       <div id="filters-fields">
-        <h4>Filtro numérico aplicado: {{ criteria }} {{ number }}</h4>
-        <h4>Filtro por nombre aplicado: {{ name }}</h4>
+        <h4 v-show="number">Filtro numérico aplicado: {{ criteria }} {{ number }}</h4>
+        <h4 v-show="name">Filtro por nombre aplicado: {{ name }}</h4>
       </div>
       <Button text="Cancelar Filtros" :handleOnClick="cancelFilters" />
     </div>

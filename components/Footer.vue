@@ -26,11 +26,15 @@ export default {
   bottom: 0;
   width: 100%;
   min-height: 120px;
-  background-color: #39167a;
+  background-image: url("../assets/img/texture.jpg");
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
   z-index: 2;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
+  border-top: 1px solid #716479;
 }
 </style>

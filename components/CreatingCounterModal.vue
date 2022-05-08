@@ -1,18 +1,13 @@
 <template>
   <ModalsContainer>
-      <span
-        id="close-icon"
-        class="material-icons"
-        @click="handleHideModal"
-      >
-        close
-      </span>
+    <span id="close-icon" class="material-icons" @click="handleHideModal">
+      close
+    </span>
     <div id="modal">
       <div id="modal-side">
         <h4>Nombre:</h4>
-        <input id="modal-input" v-model="counterName" />
-        <ErrorAlert v-show="alertContent">{{ alertContent }}
-        </ErrorAlert>
+        <input id="modal-input" v-model="counterName" v-on:keyup.enter="handleAddCounter"/>
+        <ErrorAlert v-show="alertContent">{{ alertContent }} </ErrorAlert>
       </div>
       <div id="modal-side">
         <Button
@@ -36,6 +31,11 @@ export default {
       createButtonDisabled: true,
       nameValidator: /^([A-ZÑa-zñáéíóúÁÉÍÓÚ 0-9]){2,20}$/,
     };
+  },
+  computed: {
+    counters() {
+      return this.$store.state.counters.counters;
+    },
   },
   methods: {
     refreshData() {
@@ -62,7 +62,10 @@ export default {
         ? (this.alertContent =
             "El nombre no puede tener sólo espacios en blanco")
         : value !== "" && value.trim() && !this.nameValidator.test(value)
-        ? (this.alertContent = "Usa sólo letras y números, entre 2 y 20 caracteres")
+        ? (this.alertContent =
+            "Usa sólo letras y números, entre 2 y 20 caracteres")
+        : this.counters.filter(({ name }) => name === value).length > 0
+        ? (this.alertContent = "Ya tienes un contador con ese nombre")
         : value !== "" && value.trim() && this.nameValidator.test(value)
         ? (this.createButtonDisabled = false)
         : (this.alertContent = "Debes escribir un nombre");
@@ -74,8 +77,8 @@ export default {
 <style scoped>
 #modal {
   width: 80%;
-  min-height: 80px;
-  background-color: #503977;
+  min-height: 100px;
+  background-color: #593977;
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;

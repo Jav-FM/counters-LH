@@ -27,7 +27,7 @@ export default {
 .button {
   width: 200px;
   height: 40px;
-  background-color: #b09ecf;
+  background-color: #c09ecf;
   display: flex;
   align-items: center;
   justify-content: center;

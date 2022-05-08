@@ -94,7 +94,7 @@ export default {
 #counter {
   width: 80%;
   min-height: 90px;
-  background-color: #503977;
+  background-color: #593977;
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;

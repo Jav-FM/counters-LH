@@ -2,7 +2,7 @@
 <template>
   <div id="order-container">
     <div id="order-container-side">
-      <h3>Nombre</h3>
+      <h4>Nombre</h4>
       <div id="arrows-container">
         <span
           class="material-icons up-icon"
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div id="order-container-side">
-      <h3>Valor</h3>
+      <h4>Valor</h4>
       <div id="arrows-container">
         <span
           class="material-icons up-icon"
