@@ -1,10 +1,12 @@
 <template>
-  <div id="total-container">
-    <div id="transparent-background"></div>
-    <div id="modal-container">
-      <slot />
+  <transition name="modals-transition" appear>
+    <div id="total-container">
+      <div id="transparent-background"></div>
+      <div id="modal-container">
+        <slot />
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -47,5 +49,13 @@ export default {
   align-items: center;
   justify-content: center;
   z-index: 4;
+}
+.modals-transition-enter-active,
+.modals-transition-leave-active {
+  transition: opacity 0.3s;
+}
+.modals-transition-enter,
+.modals-transition-leave-to {
+  opacity: 0;
 }
 </style>

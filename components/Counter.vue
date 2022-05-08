@@ -1,31 +1,33 @@
 
 <template>
-  <div id="counter">
-    <h3>{{ name }}</h3>
-    <div id="counter-right-side">
-      <RoundButton
-        :iconColor="'#af0a2e'"
-        :icon="'remove'"
-        :disabled="minLimitReached"
-        :handleOnClick="handleDecreaseValue"
-      />
+  <transition name="counter-transition" appear>
+    <div id="counter">
+      <h3>{{ name }}</h3>
+      <div id="counter-right-side">
+        <RoundButton
+          :iconColor="'#af0a2e'"
+          :icon="'remove'"
+          :disabled="minLimitReached"
+          :handleOnClick="handleDecreaseValue"
+        />
 
-      <h3>{{ value }}</h3>
-      <RoundButton
-        :iconColor="'#1db118'"
-        :icon="'add'"
-        :disabled="maxLimitReached"
-        :handleOnClick="handleIngrementValue"
-      />
-      <span
-        id="delete-icon"
-        class="material-icons"
-        @click="handleShowDeletingModal"
-      >
-        delete
-      </span>
+        <h3>{{ value }}</h3>
+        <RoundButton
+          :iconColor="'#1db118'"
+          :icon="'add'"
+          :disabled="maxLimitReached"
+          :handleOnClick="handleIngrementValue"
+        />
+        <span
+          id="delete-icon"
+          class="material-icons"
+          @click="handleShowDeletingModal"
+        >
+          delete
+        </span>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -119,5 +121,19 @@ export default {
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
+}
+.counter-transition-enter-active {
+  transition: all 0.4s;
+}
+.counter-transition-enter {
+  padding-right: 60px !important;
+  opacity: 0;
+}
+.counter-transition-leave-active {
+  transition: all 0.4s;
+}
+.counter-transition-leave-to {
+  padding-left: 60px !important;
+  opacity: 0;
 }
 </style>
