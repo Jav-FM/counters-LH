@@ -126,14 +126,14 @@ export default {
   transition: all 0.4s;
 }
 .counter-transition-enter {
-  padding-right: 60px !important;
+  margin-right: 60px !important;
   opacity: 0;
 }
 .counter-transition-leave-active {
   transition: all 0.4s;
 }
 .counter-transition-leave-to {
-  padding-left: 60px !important;
+  margin-left: 60px !important;
   opacity: 0;
 }
 </style>
