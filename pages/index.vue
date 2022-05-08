@@ -44,7 +44,7 @@ export default {
       return this.$store.state.modals.showingDeletingCounterModal;
     },
     counters() {
-      if (this.$store.state.countersFilters.filtersActive) {
+      if (this.$store.state.countersFilters.filteredCounters) {
         return this.$store.state.countersFilters.filteredCounters;
       } else if (this.$store.state.countersOrder.orderedCounters) {
         return this.$store.state.countersOrder.orderedCounters;
@@ -58,6 +58,7 @@ export default {
   },
   mounted() {
     localStorage.clear();
+    sessionStorage.clear();
   },
 };
 </script>

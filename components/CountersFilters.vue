@@ -1,28 +1,32 @@
 <template>
-<div>
-  <div id="counters-numeric-filters" v-show="filtersApplied !== true">
-    <h3>Filtro numérico:</h3>
-    <Selector
-      :name="'selectionCriteria'"
-      v-model="criteria"
-      :options="criteriaOptions"
-      :placeholder="'criterio'"
-    />
-    <input type="number" id="number-input" placeholder="N°" v-model="number" />
-    <Button
-      text="Aplicar Filtro"
-      :disabled="!readyToFilter"
-      :handleOnClick="applyNumericFilter"
-    />
-  </div>
+  <div>
+    <div id="counters-numeric-filters" v-show="filtersApplied !== true">
+      <h3>Filtro numérico:</h3>
+      <Selector
+        :name="'selectionCriteria'"
+        v-model="criteria"
+        :options="criteriaOptions"
+        :placeholder="'criterio'"
+      />
+      <input
+        type="number"
+        id="number-input"
+        placeholder="N°"
+        v-model="number"
+        min="0"
+        max="20"
+      />
+      <Button
+        text="Aplicar Filtro"
+        :disabled="!readyToFilter"
+        :handleOnClick="applyNumericFilter"
+      />
+    </div>
     <div id="counters-numeric-filters" v-show="filtersApplied">
-       <h3>Filtro numérico aplicado: {{criteria}} {{number}}</h3>
-    <Button
-      text="Cancelar Filtro"
-      :handleOnClick="cancelNumericFilter"
-    />
+      <h3>Filtro numérico aplicado: {{ criteria }} {{ number }}</h3>
+      <Button text="Cancelar Filtro" :handleOnClick="cancelNumericFilter" />
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -60,7 +64,7 @@ export default {
     },
   },
   methods: {
-    applyNumericFilter () {
+    applyNumericFilter() {
       const applyCondition = (numberOne, numberTwo) => {
         return this.criteria === ">"
           ? numberOne > numberTwo
@@ -72,14 +76,26 @@ export default {
           ? numberOne <= numberTwo
           : null;
       };
-      const filteredCounters = [...this.counters].filter((c) =>
+      const filteredCounters = this.counters.filter((c) =>
         applyCondition(c.value, this.number)
       );
-       this.$store.commit("countersFilters/setNumericFilter", filteredCounters);
+      const appliedFilter = {
+        criteria: this.criteria,
+        number: this.number,
+      };
+      this.$store.commit("countersFilters/setNumericFilter", [
+        filteredCounters,
+        appliedFilter,
+      ]);
     },
-    cancelNumericFilter () {
-    this.$store.commit("countersFilters/cleanFilters");
-    }
+    cancelNumericFilter() {
+      this.$store.commit("countersFilters/cleanFilters");
+    },
+  },
+  watch: {
+    counters() {
+      if (this.filtersApplied) this.applyNumericFilter();
+    },
   },
 };
 </script>
@@ -92,9 +108,10 @@ export default {
 }
 #number-input {
   height: 38px;
-  width: 50px;
+  width: 40px;
   border-radius: 5px;
   border: none;
   font-size: 16px;
+  padding-left: 15px;
 }
 </style>

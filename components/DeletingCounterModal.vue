@@ -22,11 +22,11 @@ export default {
       createButtonDisabled: true,
     };
   },
-    computed: {
+  computed: {
     counters() {
-        return this.$store.state.counters.counters;
+      return this.$store.state.counters.counters;
     },
-    },
+  },
   methods: {
     refreshData() {
       this.counterName = "";
@@ -39,8 +39,8 @@ export default {
       this.$store.commit("modals/hideDeletingCounterModal");
     },
     handleDeleteCounter() {
-      if(this.counters.length === 1) {
-             this.$store.commit("countersFilters/cleanFilters");
+      if (this.counters.length === 1) {
+        this.$store.commit("countersFilters/cleanFilters");
       }
       this.$store.commit("counters/delete", this.id);
       this.handleHideModal();
