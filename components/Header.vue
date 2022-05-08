@@ -3,7 +3,7 @@
     <div id="header-side">
       <Button
         v-show="counters.length > 0"
-        :text="'Agregar contador'"
+        text="Agregar contador"
         :handleOnClick="handleShowModal"
         :disabled="disableCreateButton"
       />
@@ -63,7 +63,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-@media (max-width: 870px) {
+@media (max-width: 894px) {
   #header-side {
     margin: auto;
     padding-bottom: 10px;

@@ -8,8 +8,8 @@
         ¿Estás seguro de que quieres eliminar este contador?
       </h4>
       <div id="buttons-container">
-        <Button :text="'Eliminar'" :handleOnClick="handleDeleteCounter" />
-        <Button :text="'Cancelar'" :handleOnClick="handleHideModal" />
+        <Button text="Eliminar" :handleOnClick="handleDeleteCounter" />
+        <Button text="Cancelar" :handleOnClick="handleHideModal" />
       </div>
     </div>
   </ModalsContainer>

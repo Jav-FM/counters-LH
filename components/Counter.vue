@@ -5,16 +5,16 @@
       <h3>{{ name }}</h3>
       <div id="counter-right-side">
         <RoundButton
-          :iconColor="'#af0a2e'"
-          :icon="'remove'"
+          iconColor="#af0a2e"
+          icon="remove"
           :disabled="minLimitReached"
           :handleOnClick="handleDecreaseValue"
         />
 
         <h3>{{ value }}</h3>
         <RoundButton
-          :iconColor="'#1db118'"
-          :icon="'add'"
+          iconColor="#1db118"
+          icon="add"
           :disabled="maxLimitReached"
           :handleOnClick="handleIngrementValue"
         />

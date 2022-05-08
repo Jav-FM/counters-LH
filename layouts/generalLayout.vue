@@ -17,17 +17,23 @@ h1 {
 }
 
 h2 {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 700;
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   margin: 0;
 }
 
 h4 {
+  font-size: 18px;
+  font-weight: 600;
+    margin: 5px;
+}
+
+h5 {
   font-size: 16px;
   font-weight: 600;
 }

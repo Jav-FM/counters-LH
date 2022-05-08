@@ -16,11 +16,11 @@
       </div>
       <div id="modal-side">
         <Button
-          :text="'Agregar'"
+          text="Agregar"
           :disabled="createButtonDisabled"
           :handleOnClick="handleAddCounter"
         />
-        <Button :text="'Cancelar'" :handleOnClick="handleHideModal" />
+        <Button text="Cancelar" :handleOnClick="handleHideModal" />
       </div>
     </div>
   </ModalsContainer>

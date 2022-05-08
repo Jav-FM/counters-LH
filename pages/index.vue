@@ -18,7 +18,7 @@
         <div v-else id="no-counters-container">
           <h4 id="index-text">No tienes contadores registrados.</h4>
           <Button
-            :text="'Crea tu primer contador'"
+            text="Crea tu primer contador"
             :handleOnClick="handleShowModal"
           />
         </div>

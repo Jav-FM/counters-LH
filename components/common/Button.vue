@@ -1,6 +1,6 @@
 <template>
   <div class="button" :class="{ disabled: disabled }" @click="handleOnClick">
-    <h4 id="button-text">{{ text }}</h4>
+    <h5 id="button-text">{{ text }}</h5>
   </div>
 </template>
 
